@@ -15,7 +15,7 @@ export default {
     align-self: flex-end;
     padding: 10px 15px;
     color: teal;
-    background: none;
+    background: white;
     border: 1px solid teal;
     transition: 0.3s;
     cursor: pointer;

@@ -21,8 +21,22 @@ export default {
     align-items: center;
     height: 50px;
     padding: 15px;
-    background-color: lightgray;
     box-shadow: 2px 2px 4px gray;
+    background-image: url('../assets/img/bg.jpg');
+    background-repeat: repeat-x;
+    animation: slide 30s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 .navbar__btns {

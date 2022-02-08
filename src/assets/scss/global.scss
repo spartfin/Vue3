@@ -1,0 +1,148 @@
+/* @include fontface(Monsterrat, Montserrat-Light, 300);
+@include fontface(Monsterrat, Montserrat-Regular, 400); */
+
+html {
+    font-family: $Monsterrat;
+    font-size: 14px;
+    line-height: 1.45;
+    color: $color_black;
+    -webkit-font-smoothing: antialiased;
+
+    @include mq(767) {
+        font-size: 12px;
+        line-height: 2;
+    }
+
+    &.is-mobile-overflow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        -webkit-overflow-scrolling: auto;
+    }
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    &.is-mobile-overflow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    &.is-mobile-overflow--scroll {
+        overflow-y: scroll;
+    }
+
+    $grid_color: $color_red;
+
+    &.is-grid::after {
+        content: '';
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        left: calc(50% + 134px);
+        width: percentage(1216px / 1600px);
+        max-width: 1460px;
+        height: 100%;
+        opacity: 0.15;
+        outline: 1px solid #fff;
+        background: repeating-linear-gradient(90deg, $grid_color 0, $grid_color percentage(94px/1216px), transparent percentage(94/1216), transparent percentage(102px/1216px));
+        transform: translateX(-50%);
+
+        pointer-events: none;
+
+        @include mq(1919) {
+            left: percentage(304 / 1600);
+            transform: translateX(0);
+        }
+
+        @include mq(1023) {
+            left: 50%;
+            width: percentage(712px / 768px);
+            background: repeating-linear-gradient(90deg, $grid_color 0, $grid_color percentage(114px/712px), transparent percentage(114px/712px), transparent percentage(120px/712px));
+            transform: translateX(-50%);
+        }
+
+        @include mq(767) {
+            width: percentage(296px / 320px);
+            background: repeating-linear-gradient(90deg, $grid_color 0, $grid_color percentage(68px/296px), transparent percentage(68px/296px), transparent percentage(76px/296px));
+        }
+    }
+}
+
+// отключаем подсветку автозаполнения
+input:-webkit-autofill {
+    color: #fff !important; /* цвет текста */
+    -webkit-box-shadow: inset 0 0 0 50px $color_black !important; /* Цвет фона */
+    box-shadow: inset 0 0 0 50px $color_black !important; /* Цвет фона */
+    -webkit-text-fill-color: #fff !important; /* цвет текста */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s $mainEaseing, border 0.3s $mainEaseing, background 0.3s $mainEaseing, opacity 0.3s $mainEaseing;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.is-no-scroll {
+    position: fixed;
+    max-width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.is-noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.is-hide {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.container {
+    max-width: 1440px;
+    padding: 0 percentage(80 / 1440);
+    margin: 0 auto;
+
+    @include mq(1023) {
+        padding: 0 percentage(28px/768px);
+    }
+
+    @include mq(767) {
+        padding: 0 percentage(12px/320px);
+    }
+}
