@@ -1,33 +1,17 @@
 <template>
-    <div class="app">
-        <post-form @create="createPost" />
+    <nav-bar></nav-bar>
 
-        <post-list :posts="posts" />
+    <div class="app">
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import PostForm from "@/сomponents/PostForm.vue";
-import PostList from "@/сomponents/PostList.vue";
+import NavBar from "@/сomponents/NavBar.vue"
 
 export default {
     components: {
-        PostList,
-        PostForm,
-    },
-    data() {
-        return {
-            posts: [
-                { id: 1, title: 'JavaScript 1', body: 'Описание поста 1' },
-                { id: 2, title: 'JavaScript 2', body: 'Описание поста 2' },
-                { id: 3, title: 'JavaScript 3', body: 'Описание поста 3' },
-            ],
-        }
-    },
-    methods: {
-        createPost(post) {
-            this.posts.push(post);
-        },
+        NavBar
     }
 }
 </script>

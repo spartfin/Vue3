@@ -30,7 +30,7 @@ export default {
                 title: '',
                 body: '',
             };
-        }
+        },
     }
 }
 </script>
