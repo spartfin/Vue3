@@ -42,7 +42,7 @@ export const postModule = {
             state.totalPages = totalPages;
         },
     },
-    action: {
+    actions: {
         async fetchPosts({ state, commit }) {
             try {
                 commit('setLoading', true);
@@ -61,8 +61,8 @@ export const postModule = {
             }
         },
         async loadMorePosts({ state, commit }) {
-            commit('setPage', state.page += 1);
             try {
+                commit('setPage', state.page += 1);
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
                     params: {
                         _page: state.page,
@@ -75,6 +75,6 @@ export const postModule = {
                 alert('Ошибка')
             }
         },
-        namespaced: true
-    }
+    },
+    namespaced: true
 }
