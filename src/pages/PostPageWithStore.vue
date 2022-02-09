@@ -1,12 +1,12 @@
 <template>
     <h2>Страница с постами</h2>
 
-    <!-- <my-input v-focus v-model="searchQuery" placeholder="Поиск..." /> -->
+    <my-input v-focus v-model="searchQuery" placeholder="Поиск..." />
 
     <div class="app__btns">
         <my-button @click="showDialog">Создать пост</my-button>
 
-        <!-- <my-select v-model="selectedSort" :options="sortOptions" /> -->
+        <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
 
     <my-dialog v-model:show="dialogVisible">

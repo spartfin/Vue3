@@ -10,16 +10,16 @@ export const postModule = {
         limit: 10,
         totalPage: 0,
         sortOptions: [
-            {value: 'title', name: 'По назавнию'},
-            {value: 'body', name: 'По содержимому'}
+            { value: 'title', name: 'По названию' },
+            { value: 'body', name: 'По содержимому' },
         ]
     }),
     getters: {
         sortedPosts(state) {
-            return [...state.posts].sort((post1, post2) => post1[state.selectedSort]?.localeCompare(post2[state.selectedSort]));
+            return [...state.posts].sort((post1, post2) => post1[state.selectedSort]?.localeCompare(post2[state.selectedSort]))
         },
         sortedAndSearchedPosts(state, getters) {
-            return getters.sortedPosts.filter(post => post.title.toLowerCase().includes(state.searchQuery.toLowerCase()));
+            return getters.sortedPosts.filter(post => post.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
         }
     },
     mutations: {
@@ -27,23 +27,23 @@ export const postModule = {
             state.posts = posts;
         },
         setLoading(state, bool) {
-            state.isPostsLoading = bool;
-        },
-        setSelectedSort(state, selectedSort) {
-            state.selectedSort = selectedSort;
-        },
-        setSearchQuery(state, searchQuery) {
-            state.searchQuery = searchQuery;
+            state.isPostsLoading = bool
         },
         setPage(state, page) {
-            state.page = page;
+            state.page = page
+        },
+        setSelectedSort(state, selectedSort) {
+            state.selectedSort = selectedSort
         },
         setTotalPage(state, totalPage) {
-            state.totalPage = totalPage;
+            state.totalPage = totalPage
+        },
+        setSearchQuery(state, searchQuery) {
+            state.searchQuery = searchQuery
         },
     },
-    action: {
-        async fetchPosts({state, commit}) {
+    actions: {
+        async fetchPosts({ state, commit }) {
             try {
                 commit('setLoading', true);
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
@@ -52,29 +52,29 @@ export const postModule = {
                         _limit: state.limit
                     }
                 });
-                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit));
-                commit('setPosts', response.data);
-            } catch (error) {
-                alert('Ошибка')
+                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit))
+                commit('setPosts', response.data)
+            } catch (e) {
+                console.log(e)
             } finally {
                 commit('setLoading', false);
             }
         },
-        async loadMorePosts({state, commit}) {
-            commit('setPage', state.page +=1);
+        async loadMorePosts({ state, commit }) {
             try {
+                commit('setPage', state.page + 1)
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
                     params: {
                         _page: state.page,
                         _limit: state.limit
                     }
                 });
-                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit));
+                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit))
                 commit('setPosts', [...state.posts, ...response.data]);
-            } catch (error) {
-                alert('Ошибка')
+            } catch (e) {
+                console.log(e)
             }
-        },
-        namespaced: true
-    }
+        }
+    },
+    namespaced: true
 }
