@@ -57,11 +57,12 @@ export default {
             searchQuery: state => state.post.searchQuery,
             page: state => state.post.page,
             limit: state => state.post.limit,
-            totalPages: state => state.post.totalPages
+            totalPages: state => state.post.totalPages,
+            sortOptions: state => state.post.sortOptions
         }),
         ...mapGetters({
             sortedPosts: 'post/sortedPosts',
-            sortedAndSearchedPosts: 'sortedAndSearchedPosts',
+            sortedAndSearchedPosts: 'post/sortedAndSearchedPosts',
         })
     },
     methods: {
