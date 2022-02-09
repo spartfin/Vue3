@@ -8,6 +8,8 @@
             <my-button class="navbar__btn" @click="$router.push('/about')">О приложении</my-button>
 
             <my-button class="navbar__btn" @click="$router.push('/store')">Store</my-button>
+
+            <my-button class="navbar__btn" @click="$router.push('/composition')">Composition API</my-button>
         </div>
     </div>
 </template>
