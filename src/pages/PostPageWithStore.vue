@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import PostForm from "@/сomponents/PostForm.vue";
-import PostList from "@/сomponents/PostList.vue";
+import PostForm from "@/components/PostForm.vue";
+import PostList from "@/components/PostList.vue";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
     components: {
-    PostList,
-    PostForm
+        PostList,
+        PostForm
 },
     data() {
         return {
