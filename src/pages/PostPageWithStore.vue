@@ -18,6 +18,16 @@
     <div v-else>Идет загрузка...</div>
 
     <div v-intersection="loadMorePosts" class="observer"></div>
+
+    <div class="page__wrapper">
+        <div 
+            class="page" 
+            :class="{'current-page': page === pageNumber}"
+            v-for="pageNumber in totalPages" 
+            :key="pageNumber"
+            @click="changePage(pageNumber)"
+        >{{ pageNumber }}</div>
+    </div>
 </template>
 
 <script>
@@ -47,7 +57,7 @@ export default {
             searchQuery: state => state.post.searchQuery,
             page: state => state.post.page,
             limit: state => state.post.limit,
-            totalPage: state => state.post.totalPage
+            totalPages: state => state.post.totalPages
         }),
         ...mapGetters({
             sortedPosts: 'post/sortedPosts',

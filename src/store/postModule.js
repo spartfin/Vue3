@@ -8,7 +8,7 @@ export const postModule = {
         searchQuery: '',
         page: 1,
         limit: 10,
-        totalPage: 0,
+        totalPages: 0,
         sortOptions: [
             { value: 'title', name: 'По назавнию' },
             { value: 'body', name: 'По содержимому' }
@@ -38,8 +38,8 @@ export const postModule = {
         setPage(state, page) {
             state.page = page;
         },
-        setTotalPage(state, totalPage) {
-            state.totalPage = totalPage;
+        setTotalPages(state, totalPages) {
+            state.totalPages = totalPages;
         },
     },
     action: {
@@ -52,7 +52,7 @@ export const postModule = {
                         _limit: state.limit
                     }
                 });
-                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit));
+                commit('setTotalPages', Math.ceil(response.headers['x-total-count'] / state.limit));
                 commit('setPosts', response.data);
             } catch (error) {
                 alert('Ошибка')
@@ -69,7 +69,7 @@ export const postModule = {
                         _limit: state.limit
                     }
                 });
-                commit('setTotalPage', Math.ceil(response.headers['x-total-count'] / state.limit));
+                commit('setTotalPages', Math.ceil(response.headers['x-total-count'] / state.limit));
                 commit('setPosts', [...state.posts, ...response.data]);
             } catch (error) {
                 alert('Ошибка')
